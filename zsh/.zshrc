@@ -1,66 +1,18 @@
-# Path to your oh-my-zsh installation.
-  export ZSH=/home/bang/.oh-my-zsh
+export ZSH="/home/lucas/.oh-my-zsh"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
+#ZSH_THEME="random"
+ZSH_THEME="refined"
 
-#ZSH_THEME="linuxonly"
-ZSH_THEME="af-magic"
-#ZSH_THEME="nicoulaj"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+HIST_STAMPS="mm/dd/yyyy"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+plugins=(git copydir copyfile z zsh-syntax-highlighting)
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd.mm.yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git copydir copyfile z)
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -76,43 +28,96 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-#echo $fg_bold[red] "$(cat ~/.unicorn.ascii)"
-echo $fg_bold[red] "$(cat ~/.unicorn.ascii)"
-
-git config --global credential.helper cache
-
-export PATH=/usr/lib/jvm/java-8-oracle/jre/bin:$PATH
-
-function rem(){
-  echo $1 | cat - /home/bang/Dropbox/reminders/stack.txt > /home/bang/Dropbox/reminders/temp && mv /home/bang/Dropbox/reminders/temp /home/bang/Dropbox/reminders/stack.txt
-}
-
+alias cb='clipcopy'
 alias cpd='copydir'
 alias cpf='copyfile'
-alias ez='vim "+normal Go" +startinsert ~/.zshrc'
-alias sz='source ~/.zshrc; cp ~/.zshrc ~/Dropbox/osconfigs/homedesktop/zshrc'
-alias hs='history | grep'
-alias lsd='ls -d */'
-alias ocl='octave-cli'
-alias ei='vim "+normal Go" ~/Dropbox/osconfigs/homedesktop/installation.txt'
-alias rems='less /home/bang/Dropbox/reminders/stack.txt'
-alias erem='vim ~/Dropbox/reminders/stack.txt'
-alias sshdrum='ssh bang@drum.cs.ucsb.edu'
-alias sshcsil='ssh bang@csil.cs.ucsb.edu'
-alias art='c=(╱ ╲);clear;while :;do printf ${c[RANDOM%2+1]};done'
+alias cppc='history | tail -n 1 | cut -d " " -f 5- | clipcopy'
 
+alias ipe='/home/bang/tools/ipe/ipe.AppImage'
+alias ipeslides='/home/bang/tools/ipe/ipe.AppImage ipe -sheet presentation'
 
+alias ez='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
+alias r='ranger'
+alias untar='tar xvfz'
 
+alias gits='git status'
+alias gita='git add'
+alias gitc='git commit -m'
+alias pull='git pull'
+alias push='git push'
+alias ghpw='cpf ~/.ghpw'
+alias dhpw='cpf ~/.dhpw'
+alias cp-git-remote="git remote -v | grep fetch | awk -F ' ' '{print $2}' | clipcopy"
 
+alias mousecoords='watch -t -n 0.0001 xdotool getmouselocation'
+alias mousepos='watch -t -n 0.0001 xdotool getmouselocation'
 
+alias dls='cd ~/Downloads'
+alias l='lsd -l'
+
+alias m='micro'
+alias esb='history | tail -n 50 | cut -c 26- | micro +10000:100'
+alias msb='micro -startpos 100000,1 $BYOBU_RUN_DIR/printscreen'
+
+alias ff='firefox'
+
+alias saturny='ssh -Y bang@saturn.cs.hmc.edu'
+alias saturn='ssh bang@saturn.cs.hmc.edu'
+alias knuthy='ssh -Y bang@knuth.cs.hmc.edu'
+alias knuth='ssh bang@knuth.cs.hmc.edu'
+
+alias ytdl='youtube-dl -x --audio-format mp3 --audio-quality 1'
+alias mousepos='watch -t -n 0.0001 xdotool getmouselocation'
+
+alias flc='ls | wc | awk '\''{print $1}'\'''
+alias hs='history | grep -i'
+alias m='micro'
+alias dhpw='cpf ~/.dhpw'
+alias hs='history | grep -i'
+
+# alias dotfix="sed -e s/rank\ =\ sink\;//g -i "
+
+# hsc() {
+#     history | grep -B "$2" -A "$3" "$1"
+# }
+
+hsc () {
+        omz_history -f | grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} -B "$2" -A "$3" "$1"
+}
+
+cpfp () {
+	emulate -L zsh
+	print -n $PWD/$1 | clipcopy
+}
+
+vpdf () {
+    evince "$1" & disown;
+} 
+
+xopen () {
+    xdg-open "$1" & disown;
+} 
+
+#alias sb='xdotool key shift+F7; micro "$BYOBY_RUN_DIR"/printscreen;'
+sb () {
+  xdotool key shift+F7;
+  #/snap/bin/micro "$BYOBU_RUN_DIR/printscreen":10000:1;
+  cat "$BYOBU_RUN_DIR/printscreen" | grep . > ~/.tmp.sb.micro 
+  /snap/bin/micro ~/.tmp.sb.micro:10000:100;
+}
+
+giturl (){ git remote -v | grep fetch | awk -F ' ' '{print $2}' }
+
+precmd() { eval "$PROMPT_COMMAND" }
+
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+
+clear
+# echo $fg[yellow] "$(cat ~/.unicorn.ascii)"
+# neofetch --off
+# lolcat ~/.logo.ascii
