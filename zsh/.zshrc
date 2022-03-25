@@ -1,4 +1,4 @@
-export ZSH="/home/lucas/.oh-my-zsh"
+export ZSH="/home/bang/.oh-my-zsh"
 
 #ZSH_THEME="random"
 ZSH_THEME="refined"
